@@ -78,10 +78,39 @@ view: campaas {
     datatype: date
     sql: ${TABLE}.Fecha_inscripcion ;;
   }
+  parameter: date_granularity {
+    type: unquoted
+    allowed_value: {
+      label: "Año"
+      value: "year"
+    }
+    allowed_value: {
+      label: "Month"
+      value: "month"
+    }
+    allowed_value: {
+      label: "Week"
+      value: "week"
+    }
+  }
+  dimension: date {
+
+    sql: {% if date_granularity._parameter_value == 'year' %}
+          ${fecha_inscripcion_year}
+        {% elsif date_granularity._parameter_value == 'month' %}
+          ${fecha_inscripcion_month}
+        {% elsif date_granularity._parameter_value == 'week' %}
+          ${fecha_inscripcion_week}
+        {% endif %} ;;
+  }
+
   dimension: genero {
     type: string
     sql: ${TABLE}.Genero ;;
+    drill_fields: [hijos,ingreso_medio_mensual]
   }
+
+
   dimension: hijos {
     type: number
     sql: ${TABLE}.Hijos ;;
@@ -146,8 +175,28 @@ view: campaas {
     type: number
     sql: ${TABLE}.Year_Birth ;;
   }
+  dimension: concatenado_prueba  {
+    type: string
+    sql:concat (${year_birth},' ',${educacion}) ;;
+
+    }
+  dimension: d_sin_carne {
+    type: number
+    sql: ${compras_total}-${numero_carnes} ;;
+
+  }
+  dimension: edad{
+    type: number
+    sql: EXTRACT(YEAR FROM CURRENT_DATE()) - ${year_birth} ;;
+
+  }
   measure: count {
-    type: count
+     type: count
     drill_fields: [id]
+  }
+  measure: total_sin_carne {
+    type: sum
+    sql: ${compras_total}-${numero_carnes} ;;
+
   }
 }

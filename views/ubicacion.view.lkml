@@ -21,6 +21,14 @@ view: ubicacion {
     type: string
     sql: ${TABLE}.Zona ;;
   }
+  dimension: zona_google {
+    sql: ${zona} ;;
+    link: {
+      label: "Google"
+      url: "https://www.google.com/search?q={{ value }}"
+      icon_url: "https://google.com/favicon.ico"
+    }
+  }
   measure: count {
     type: count
   }
