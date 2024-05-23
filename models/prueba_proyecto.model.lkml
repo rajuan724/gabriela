@@ -11,13 +11,11 @@ datagroup: prueba_proyecto_default_datagroup {
 persist_with: prueba_proyecto_default_datagroup
 
 explore: campaas {
-
-#  access_filter: {
-#    field: campa___as
-#    user_attribute: Camp
-#  }
-
-    join: marketing {
+  access_filter: {
+    field: campaas.campa___as
+    user_attribute: camp
+  }
+  join: marketing {
     type: left_outer
     sql_on: ${campaas.campa___as} = ${marketing.campa___as} ;;
     relationship: many_to_one
