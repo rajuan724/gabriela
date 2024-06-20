@@ -199,4 +199,8 @@ view: campaas {
     sql: ${compras_total}-${numero_carnes} ;;
 
   }
+  measure: promedio_productos_carne {
+    type: average
+    sql: ${numero_carnes} ;;
+  }
 }
