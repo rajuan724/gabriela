@@ -203,4 +203,10 @@ view: campaas {
     type: average
     sql: ${numero_carnes} ;;
   }
+  measure: total_costo {
+    type: sum
+    sql: ${marketing.costo} ;;
+  }
+
+
 }
