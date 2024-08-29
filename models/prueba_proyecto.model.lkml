@@ -11,6 +11,7 @@ datagroup: prueba_proyecto_default_datagroup {
 persist_with: prueba_proyecto_default_datagroup
 
 explore: campaas {
+
   join: marketing {
     sql_on: ${campaas.campa___as} = ${marketing.campa___as};;
     relationship: many_to_one
