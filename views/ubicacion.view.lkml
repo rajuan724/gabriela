@@ -4,23 +4,33 @@ view: ubicacion {
   dimension: direccion {
     type: string
     sql: ${TABLE}.Direccion ;;
+    label: "Dirección"
   }
+
   dimension: latitud {
     type: number
     sql: ${TABLE}.Latitud ;;
+    label: "Latitud"
   }
+
   dimension: longitud {
     type: number
     sql: ${TABLE}.Longitud ;;
+    label: "Longitud"
   }
+
   dimension: numero_zona {
     type: number
     sql: ${TABLE}.Numero_zona ;;
+    label: "Número de Zona"
   }
+
   dimension: zona {
     type: string
     sql: ${TABLE}.Zona ;;
+    label: "Zona"
   }
+
   dimension: zona_google {
     sql: ${zona} ;;
     link: {
@@ -28,7 +38,9 @@ view: ubicacion {
       url: "https://www.google.com/search?q={{ value }}"
       icon_url: "https://google.com/favicon.ico"
     }
+    label: "Zona (Búsqueda en Google)"
   }
+
   dimension: zonahtml {
     html: <p>{{value}}
           <a href="#drillmenu">Drill menu</a>,
@@ -37,7 +49,9 @@ view: ubicacion {
           </a></p>;;
     sql: ${TABLE}.zona ;;
     type: string
+    label: "Zona (HTML)"
   }
+
   measure: dash_nav {
     label: "Mancii"
     type: string
@@ -52,7 +66,9 @@ view: ubicacion {
       </div>
       <div style="background-color: #FFFFFF; height:500px;width:100%"></div>;;
   }
+
   measure: count {
     type: count
+    label: "Conteo de Registros"
   }
 }
